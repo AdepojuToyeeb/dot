@@ -41,13 +41,13 @@ export default function RootLayout({
           <GlobalStateProvider>
             <CategoryProvider>
               <CartProvider>
-                  <Header />
-                  <div className="lg:flex px-6 space-y-6 lg:space-y-0 gap-8">
-                    <Category />
-                    <div className="flex-1 border rounded-xl shadow">
-                      {children}
-                    </div>
+                <Header />
+                <div className="xl:flex px-6 space-y-6 xl:space-y-0 gap-8">
+                  <Category />
+                  <div className="flex-1 border rounded-xl shadow">
+                    {children}
                   </div>
+                </div>
               </CartProvider>
             </CategoryProvider>
           </GlobalStateProvider>

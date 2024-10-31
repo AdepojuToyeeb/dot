@@ -11,7 +11,7 @@ export default function ProductsPage() {
 
   return (
     <div className="container mx-auto w-full px-4 py-6">
-      <div className="lg:flex gap-8">
+      <div className="xl:flex gap-8">
         <div className="flex-1 space-y-8">
           <div className="flex justify-between items-center">
             <p>All Products</p>

@@ -105,7 +105,7 @@ export default function EditProductForm({ product }: props) {
 
   const updateProductMutation = useMutation({
     mutationFn: EditProducts,
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Product updated successfully");
       queryClient.invalidateQueries({ queryKey: ["get_all_products"] });
       queryClient.invalidateQueries({
@@ -147,12 +147,12 @@ export default function EditProductForm({ product }: props) {
   return (
     <div className="container mx-auto p-6 ">
       <Card>
-        <CardHeader className="flex  flex-col-reverse lg:flex-row lg:items-center flex- justify-between">
+        <CardHeader className="flex  flex-col-reverse xl:flex-row xl:items-center flex- justify-between">
           <CardTitle className="">Edit Product</CardTitle>
           <Button
             variant="ghost"
             onClick={() => router.back()}
-            className="text-xs px-0 lg:px-2 lg:text-sm self-end"
+            className="text-xs px-0 xl:px-2 xl:text-sm self-end"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Products
@@ -331,14 +331,14 @@ export default function EditProductForm({ product }: props) {
 
             <div className="space-y-4">
               <Label>Specifications</Label>
-              <div className="lg:flex space-y-3 lg:space-y-0 gap-2">
+              <div className="xl:flex space-y-3 xl:space-y-0 gap-2">
                 <Input
                   placeholder="Key"
                   value={newSpec.key}
                   onChange={(e) =>
                     setNewSpec({ ...newSpec, key: e.target.value })
                   }
-                  className="w-full lg:w-1/3"
+                  className="w-full xl:w-1/3"
                 />
                 <Input
                   placeholder="Value"
@@ -346,7 +346,7 @@ export default function EditProductForm({ product }: props) {
                   onChange={(e) =>
                     setNewSpec({ ...newSpec, value: e.target.value })
                   }
-                  className="w-full lg:w-1/3"
+                  className="w-full xl:w-1/3"
                 />
                 <Button
                   type="button"
@@ -357,7 +357,7 @@ export default function EditProductForm({ product }: props) {
                   Add
                 </Button>
               </div>
-              <div className="space-y-2 text-xs lg:text-base">
+              <div className="space-y-2 text-xs xl:text-base">
                 {Object.entries(specifications)?.map(([key, value]) => (
                   <div
                     key={key}
@@ -378,17 +378,17 @@ export default function EditProductForm({ product }: props) {
               </div>
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col gap-3 lg:flex-row justify-between lg:justify-end">
+          <CardFooter className="flex flex-col gap-3 xl:flex-row justify-between xl:justify-end">
             <Button
               type="button"
               variant="outline"
-              className="w-full lg:w-auto"
+              className="w-full xl:w-auto"
               onClick={() => router.push("/")}
             >
               Cancel
             </Button>
             <Button
-              className="w-full lg:w-auto"
+              className="w-full xl:w-auto"
               disabled={updateProductMutation.isPending}
               type="submit"
             >

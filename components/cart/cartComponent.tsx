@@ -38,12 +38,12 @@ export default function CartComponent() {
         ) : (
           <div className="flex flex-col gap-5 py-6 overflow-y-auto overflow-x-hidden">
             {items.map((item) => (
-              <div key={item.id} className="flex flex-col lg:flex-row gap-4">
+              <div key={item.id} className="flex flex-col xl:flex-row gap-4">
                 <div className="flex-shrink-0 overflow-hidden rounded-md border">
                   <Image
                     src={item.imageUrl}
                     alt={item.name}
-                    className="object-cover object-center h-full w-full lg:max-w-20"
+                    className="object-cover object-center h-full w-full xl:max-w-20"
                     onError={(e) => {
                       e.currentTarget.src = `/images/placeholder.png`;
                     }}
@@ -54,12 +54,12 @@ export default function CartComponent() {
                 </div>
                 <div className="flex flex-1 gap-2 justify-between">
                   <div className="flex flex-col content-between justify-between">
-                    <h3 className="text-xs lg:text-base font-semibold">
+                    <h3 className="text-xs xl:text-base font-semibold">
                       {item.name}
                     </h3>
                     <p
                       data-testid="cart-total-price"
-                      className="text-xs lg:text-sm"
+                      className="text-xs xl:text-sm"
                     >
                       ${item.price.toFixed(2)} each
                     </p>

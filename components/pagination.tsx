@@ -36,7 +36,7 @@ export default function Pagination({
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between lg:px-2 py-4 border-t">
+    <div className="flex flex-col md:flex-row items-center justify-between xl:px-2 py-4 border-t">
       <div className="flex items-center gap-2 mb-2 md:mb-0">
         <Button
           variant="outline"
@@ -48,7 +48,9 @@ export default function Pagination({
           Previous
         </Button>
 
-        <span className="text-xs lg:text-sm font-medium">Page {currentPage}</span>
+        <span className="text-xs xl:text-sm font-medium">
+          Page {currentPage}
+        </span>
 
         <Button
           variant="outline"

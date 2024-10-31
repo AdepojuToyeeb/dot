@@ -92,7 +92,7 @@ export default function ProductsList() {
 
     return (
       <>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {loadingItems.map((_, index) => (
             <CardSkeletonComponent key={index} />
           ))}
@@ -110,7 +110,6 @@ export default function ProductsList() {
           <p className="text-gray-500">
             We couldn't find any products matching your criteria
           </p>
-         
         </div>
       </Card>
     );
@@ -118,7 +117,7 @@ export default function ProductsList() {
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {data?.products?.map(
           (product: {
             id: string;
@@ -156,7 +155,7 @@ export default function ProductsList() {
                 <p className="text-gray-500">{product.brand}</p>
                 <p className="font-bold text-lg">${product.price.toFixed(2)}</p>
               </CardContent>
-              <CardFooter className="flex flex-col lg:flex-row gap-3">
+              <CardFooter className="flex flex-col xl:flex-row gap-3">
                 <Button
                   className="w-full flex items-center gap-2"
                   onClick={() => router.push(`/${product.id}`)}

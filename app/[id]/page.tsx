@@ -52,11 +52,7 @@ export default function ProductDetails() {
 
   const deleteProductsMutation = useMutation({
     mutationFn: DeleteProducts,
-    onSuccess: (data) => {
-      if (!data) {
-        toast.error("failed to submit data.retry");
-        return;
-      }
+    onSuccess: () => {
       toast.success("submitted address Information");
       queryClient.invalidateQueries({ queryKey: ["get_all_products"] });
       router.push("/");
@@ -65,15 +61,13 @@ export default function ProductDetails() {
 
   const { data: product, isLoading } = useQuery({
     queryKey: [
-      "get_all_products",
+      `get_single_products ${id}`,
       {
         id,
       },
     ],
     queryFn: () => GetSingleProduct(+id),
   });
-
-  console.log("product", product);
 
   const handleDelete = async () => {
     deleteProductsMutation.mutate(+id);
@@ -141,7 +135,7 @@ export default function ProductDetails() {
             {/* Product Information */}
             <div className="space-y-6">
               {/* Category Breadcrumb */}
-              <div className="text-xs lg:text-sm">
+              <div className="text-xs xl:text-sm">
                 <Link
                   href={`/?category=${product.category}`}
                   className="text-blue-600 hover:underline"
@@ -158,23 +152,23 @@ export default function ProductDetails() {
               </div>
 
               {/* Product Title */}
-              <h1 className="text-xl lg:text-3xl font-bold">{product.name}</h1>
+              <h1 className="text-xl xl:text-3xl font-bold">{product.name}</h1>
 
               {/* Description */}
-              <p className="text-sm lg:text-base text-gray-600">
+              <p className="text-sm xl:text-base text-gray-600">
                 {product.description}
               </p>
 
               {/* Price and Stock */}
               <div className="flex items-baseline gap-4">
-                <span className="lg:text-3xl font-bold">
+                <span className="xl:text-3xl font-bold">
                   ${product.price.toFixed(2)}
                 </span>
                 <span className="text-gray-600">In stock: {product.stock}</span>
               </div>
 
               {/* Rating */}
-              <div className="flex text-sm lg:text-base items-center gap-2">
+              <div className="flex text-sm xl:text-base items-center gap-2">
                 <div className="flex">{renderRatingStars(product.rating)}</div>
                 <span className="text-gray-600">
                   {product.rating} ({product.reviews} reviews)
@@ -183,13 +177,13 @@ export default function ProductDetails() {
 
               {/* Specifications */}
               <div>
-                <h2 className="text-base lg:text-xl font-semibold mb-4">
+                <h2 className="text-base xl:text-xl font-semibold mb-4">
                   Specifications:
                 </h2>
                 <dl className="grid grid-cols-2 gap-4">
                   {Object.entries(product?.specifications).map(
                     ([key, value]) => (
-                      <div className="text-sm lg:text-base" key={key}>
+                      <div className="text-sm xl:text-base" key={key}>
                         <dt className="font-medium capitalize">
                           {key.replace(/([A-Z])/g, " $1")}:
                         </dt>
@@ -201,10 +195,10 @@ export default function ProductDetails() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col lg:flex-row gap-4 pt-4">
+              <div className="flex flex-col xl:flex-row gap-4 pt-4">
                 <Button
                   size="lg"
-                  className="w-full lg:w-auto"
+                  className="w-full xl:w-1/4"
                   variant={isInCart(product.id) ? "destructive" : "default"}
                   onClick={() => handleCartAction(product)}
                 >
@@ -222,7 +216,7 @@ export default function ProductDetails() {
                 </Button>
                 <Button
                   size="lg"
-                  className="w-full lg:w-auto"
+                  className="w-full xl:w-1/4"
                   variant="outline"
                   onClick={() => router.push(`/edit/${product.id}`)}
                 >
@@ -234,7 +228,7 @@ export default function ProductDetails() {
                       size="lg"
                       variant="destructive"
                       disabled={isDeleting}
-                      className="w-full lg:w-auto"
+                      className="w-full xl:w-1/4"
                     >
                       Delete Product
                     </Button>

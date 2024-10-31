@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { QueryProvider } from "@/lib/providers";
+import { Toaster } from "sonner";
+import { CategoryProvider } from "@/lib/context/category";
+import { CartProvider, useCart } from "@/lib/context/cartContext";
+import Header from "@/components/header";
+import Category from "@/components/category/category";
+import { GlobalStateProvider } from "@/lib/context/globalContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,9 +33,27 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} w-full antialiased`}
       >
-        {children}
+        {/* would have used redux for a much bigger state*/}
+
+        <QueryProvider>
+          <GlobalStateProvider>
+            <CategoryProvider>
+              <CartProvider>
+                  <Header />
+                  <div className="lg:flex px-6 space-y-6 lg:space-y-0 gap-8">
+                    <Category />
+                    <div className="flex-1 border rounded-xl shadow">
+                      {children}
+                    </div>
+                  </div>
+              </CartProvider>
+            </CategoryProvider>
+          </GlobalStateProvider>
+
+          <Toaster richColors />
+        </QueryProvider>
       </body>
     </html>
   );
